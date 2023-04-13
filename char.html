@@ -1,24 +1,103 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Combat</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your Character</title>
     <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
-<div class = "fight">
-    <div class = "char">
-        <div class="image-container"><img src="pictures/hero.jpg" alt="hero"></div>
-
-        <p> Lvl</p>
-        <p> ATK</p><br>
-        <p> VTD</p><br>
-        <button>Test</button>
-
-
+<header>
+    <h1>Your Character</h1>
+    <div class="top-nav">
+        <ul>
+            <li><a href="login.html">Home</a></li>
+            <li><a href="fight.html">Fight</a></li>
+            <li><a href="char.html">Character</a></li>
+            <li>Email</li>
+        </ul>
     </div>
+</header>
+<div class = "image-container"></div>
+<div class="container">
+    <p id="color-black">Gold in Bank: <span id="gold" class="gold">0</span></p>
+    <p>Attack:</p>
+    <button id = "test" class ="button">Attack:</button>
+    <button id="attack" class="button" disabled>Level Up Attack</button>
+    <p>Defense:</p>
+    <button id = "defense1" class ="button">Defense:</button>
+    <button id="defense" class="button" disabled>Level Up Defense</button>
+    <p>HP:</p>
+    <button id = "test1" class ="button">HP:</button>
+    <button id="hp" class="button" disabled>Level Up HP</button>
+</div>
+<script>
+    var gold = 0;
+    var attackLevel = 1;
+    var attackCost = 1;
+    var defenseLevel = 1;
+    var defenseCost = 1;
+    var hpLevel = 1;
+    var hpCost = 1;
+    var goldView = document.getElementById("gold");
+    var attackButton = document.getElementById("attack");
+    var defenseButton = document.getElementById("defense");
+    var hpButton = document.getElementById("hp");
+    var test = document.getElementById("test");
 
+    function updateGold(n) {
+        gold += n;
+        if (gold >= attackCost) {
+            attackButton.disabled = false;
+        }
+        if (gold >= defenseCost) {
+            defenseButton.disabled = false;
+        }
+        if (gold >= hpCost) {
+            hpButton.disabled = false;
+        }
+        goldView.innerText = gold;
+    }
 
+    function levelUpAttack() {
+        if (gold >= attackCost) {
+            gold -= attackCost;
+            attackLevel += 1;
+            attackCost = Math.ceil(attackCost * 1.1);
+            goldView.innerText = gold;
+            attackButton.innerText = attackLevel + " (Cost: " + attackCost + ")";
+            attackButton.disabled = true;
+        }
+    }
+
+    function levelUpDefense() {
+        if (gold >= defenseCost) {
+            gold -= defenseCost;
+            defenseLevel += 1;
+            defenseCost = Math.ceil(defenseCost * 1.1);
+            goldView.innerText = gold;
+            defenseButton.innerText = "Level Up Defense (Cost: " + defenseCost + ")";
+            defenseButton.disabled = true;
+        }
+    }
+
+    function levelUpHP() {
+        if (gold >= hpCost) {
+            gold -= hpCost;
+            hpLevel += 1;
+            hpCost = Math.ceil(hpCost * 1.1);
+            goldView.innerText = gold;
+            hpButton.innerText = "Level Up HP (Cost: " + hpCost + ")";
+            hpButton.disabled = true;
+        }
+    }
+
+    attackButton.onclick = levelUpAttack;
+    defenseButton.onclick = levelUpDefense;
+    hpButton.onclick = levelUpHP;
+    test.onclick = function (){ updateGold(10)};
+
+    setInterval(function (){ updateGold(1)}, 1000)
+</script>
 </body>
 </html>

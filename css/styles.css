@@ -1,9 +1,27 @@
-.wrapper {
+.top-nav{
     display: flex;
-    background-color: white;
-    color: orange;
-    size: 20pt;
+    justify-content: space-between;
+    background-color: #333;
+    color: white;
+    padding: 10px;
 }
+.top-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0px;
+}
+.top-nav li {
+    padding: 10px;
+}
+.top-nav li:hover {
+    background-color: #555;
+}
+.top-nav li a:active {
+    background-color: grey;
+}
+
 .skill {
     display: flex;
     background-color: red;
@@ -54,6 +72,12 @@ home{
 p {color: white;
     size: 20pt;
 padding: 5pt;}
+
+#color-black {
+    color: black;
+    size: 20pt;
+    padding: 5pt;
+}
 h1 {
     text-align: center;
 }
@@ -66,6 +90,56 @@ h1 {
 img {
     width: 100%;
     height: auto;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+.image-container {
+    background-image: url('pictures/hero.jpg');
+    background-size: cover;
+    max-width: 800px;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+}
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.gold {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
+.button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 10px;
+    cursor: pointer;
+    min-width: 100px;
+}
+.button:hover {
+    background-color: #3e8e41;
+}
+.button:disabled, button[disabled]{
+    border: 1px solid #999999;
+    background-color: grey;
+    color: white;
 }
 
 

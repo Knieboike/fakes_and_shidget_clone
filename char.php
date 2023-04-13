@@ -5,16 +5,28 @@ $username = "root";
 $password = "";
 $database = "values";
 
-if (!empty($integer_value)){
-
-}
-
-
-
 $conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+// Step 7: Display the integer value in HTML
+$sql = "SELECT atk FROM attributeschars WHERE id=1";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $integer_value = $row["atk"];
+    echo "The integer value is: " . $integer_value;
+} else {
+    echo "No integer value found";
+    $integer_value = 0;
+}
+
+
+
+
+
+
 
 // Step 4: Handle the form submission
 if (isset($_POST['submit'])) {
@@ -50,16 +62,7 @@ if (isset($_POST['increment'])) {
     }
 }
 
-// Step 7: Display the integer value in HTML
-$sql = "SELECT atk FROM attributeschars WHERE id=1";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $integer_value = $row["atk"];
-    echo "The integer value is: " . $integer_value;
-} else {
-    echo "No integer value found";
-}
+
 
 $conn->close();
 ?>
